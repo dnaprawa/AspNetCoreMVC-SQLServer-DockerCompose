@@ -1,0 +1,33 @@
+version: "3.2"
+services:
+    mvc-web:
+        build: .
+        environment:
+            ASPNETCORE_ENVIRONMENT: "Production"
+        ports:
+            - "8000:80"
+        depends_on:
+            - db
+        networks:
+            - linuxaspnetcore
+        restart: unless-stopped
+    db:
+        image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
+        restart: always
+        environment:
+            MSSQL_SA_PASSWORD: "Testpassword123"
+            SA_PASSWORD: "Testpassword123"
+            ACCEPT_EULA: "Y"
+        ports:
+            - 1433:1433
+        volumes:
+            - linuxaspnetcoredata:/var/opt/mssql
+        networks:
+            - linuxaspnetcore
+            
+volumes:
+  linuxaspnetcoredata:
+
+networks:
+  linuxaspnetcore:
+     driver: bridge
