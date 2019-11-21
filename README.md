@@ -6,7 +6,7 @@
 ```sh
 $ docker-compose up -d --build
 ```
-####  2. Open any web browser and go to localhost:8080 to access your app.
+####  2. Open any web browser and go to localhost:8000 to access your app.
 ####  3. To run locally, install SQLServer Express and launch from Visual Studio or using dotnet CLI
 
 ```sh
