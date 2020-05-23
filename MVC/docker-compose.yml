@@ -2,6 +2,7 @@ version: "3.2"
 services:
     mvc-web:
         build: .
+        container_name: mvc
         environment:
             ASPNETCORE_ENVIRONMENT: "Production"
         ports:
@@ -13,6 +14,7 @@ services:
         restart: unless-stopped
     db:
         image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
+        container_name: mvc-db
         restart: always
         environment:
             MSSQL_SA_PASSWORD: "3XSsBjPkcnfR"
