@@ -13,4 +13,13 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 COPY --from=build-env /app/out .
+
+RUN groupadd -g 500 dotnet && \
+    useradd -u 500 -g dotnet dotnet \
+    && chown -R dotnet:dotnet /app
+
+USER dotnet:dotnet
+
+ENV ASPNETCORE_URLS http://*:5000
+
 ENTRYPOINT ["dotnet", "MVC.dll"]

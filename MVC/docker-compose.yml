@@ -5,7 +5,7 @@ services:
         environment:
             ASPNETCORE_ENVIRONMENT: "Production"
         ports:
-            - "8000:80"
+            - "8080:5000"
         depends_on:
             - db
         networks:
@@ -15,19 +15,19 @@ services:
         image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
         restart: always
         environment:
-            MSSQL_SA_PASSWORD: "Testpassword123"
-            SA_PASSWORD: "Testpassword123"
+            MSSQL_SA_PASSWORD: "3XSsBjPkcnfR"
+            SA_PASSWORD: "3XSsBjPkcnfR"
             ACCEPT_EULA: "Y"
         ports:
-            - 1433:1433
+            - "1433"
         volumes:
             - linuxaspnetcoredata:/var/opt/mssql
         networks:
             - linuxaspnetcore
-            
+
 volumes:
-  linuxaspnetcoredata:
+    linuxaspnetcoredata:
 
 networks:
-  linuxaspnetcore:
-     driver: bridge
+    linuxaspnetcore:
+        driver: bridge
